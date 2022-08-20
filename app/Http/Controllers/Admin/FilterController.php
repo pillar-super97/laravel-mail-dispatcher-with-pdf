@@ -21,6 +21,10 @@ class FilterController
         $filter->logo = $request->logo;
         $filter->profile = $request->profile;
         $filter->allowEmptyContent = $request->allowEmptyContent;
+        $filter->multipleJpgIntoPdf = $request->multipleJpgIntoPdf;
+        $filter->sizeUnit = $request->sizeUnit;
+        $filter->minSize = $request->minSize;
+        $filter->maxSize = $request->maxSize;
         $filter->save();
         $filters = Filter::all();
         return view('admin.mail.filter', compact('filters'));

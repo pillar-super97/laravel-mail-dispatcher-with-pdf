@@ -167,11 +167,11 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <input class="form-control" type="number" name="minSize" value='0' min="0"/>
+                <input class="form-control" type="number" name="minSize" value={{$filters[0]->minSize}} min="0"/>
             </div>
             <label>&mdash;</label>
             <div class="col-md-1">
-                <input class="form-control" type="number" name="maxSize" value='700'/>
+                <input class="form-control" type="number" name="maxSize" value={{$filters[0]->maxSize}} max="1024"/>
             </div>
             <div class="col-md-3">
                 <div class="form-group">

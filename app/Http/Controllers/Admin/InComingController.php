@@ -102,9 +102,26 @@ class InComingController extends Controller
                     $html = $logo . $body;
                 }
 
-
-                foreach ($mail->getAttachments() as $file) {
-                    $message->attachData($file->getContent(), $file->getName());
+                if($filter->multipleJpgIntoPdf)
+                {
+                    $jpgData = "";
+                    foreach ($mail->getAttachments() as $file) {
+                        // dd($file);
+                        if($file->getExtension() == 'jpg')
+                        {
+                            // dd($file);
+                            $image = "data:image/jpg;base64,".base64_encode($file->getContent());
+                            $jpgData .= "<img src='$image'>";
+                        }
+                    }
+                    $dompdf = PDF::loadHTML($jpgData)->setOption(['defaultFont' => 'sans-serif'])->setPaper('a4', 'landscape')->setWarnings(false);
+                    $message->attachData($dompdf->output(), "MergedJpeg.pdf");
+                }
+                else
+                {
+                    foreach ($mail->getAttachments() as $file) {
+                        $message->attachData($file->getContent(), $file->getName());
+                    }
                 }
 
                 if(!$filter->allowEmptyContent && $body == null)
