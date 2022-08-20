@@ -1,0 +1,13 @@
+{
+    "lato": {
+        "normal": "C:\\xampp\\htdocs\\dev\\storage\\fonts\/lato_normal_c937023ee11dc67b691d29abb2434091",
+        "bold": "C:\\xampp\\htdocs\\dev\\storage\\fonts\/lato_bold_489627a0b84252f77910a8db7274a6ce",
+        "900": "lato_900_89f931ce71e2fd25423e038f15c639da"
+    },
+    "wf_segoe-ui_normal": {
+        "normal": "wf_segoe_ui_normal_normal_a6ed488683ff8a89f6e593c0ba63c19e"
+    },
+    "wf_segoe-ui_semilight": {
+        "normal": "wf_segoe_ui_semilight_normal_8e12d122701680f9371015ade3e53886"
+    }
+}
