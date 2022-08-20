@@ -135,13 +135,16 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-md-10">
+            <div class="col-md-3">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="gridCheck1">
                     <label class="form-check-label">
-                        Only if include workd:
+                        Only if include word: (Seperate words by comma.)
                     </label>
                 </div>
+            </div>
+            <div class="col-md-9">
+                <input class="form-control" type="text" name="minSize" value={{$filters[0]->includeWord}} min="0"/>
             </div>
         </div>
 
