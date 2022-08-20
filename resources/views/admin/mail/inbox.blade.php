@@ -20,45 +20,45 @@
     </div>
     @if ($paginator->count() > 0)
         @foreach ($paginator as $oMessage)
-            <!-- <a href="{{ request()->url() }}/{{ $oMessage->getUid() }}/show" class="text-decoration-none link-to-meesage"> -->
+            <!-- <a href="{{ request()->url() }}/{{ $oMessage->uid }}/show" class="text-decoration-none link-to-meesage"> -->
                 <div class="h-50 row{{ $loop->odd ? ' bg-row' : '' }}">
                     <div
                         class="col-3 col-md-1 align-items-center d-flex py-1 justify-content-center justify-content-xl-start">
-                        <a href="{{ request()->url() }}/{{ $oMessage->getUid() }}/show" class="text-decoration-none link-to-meesage">
-                        <p class="fw-light py-0 my-0 uid-number ">{{ $oMessage->getUid() }}</p>
+                        <a href="{{ request()->url() }}/{{ $oMessage->uid }}/show" class="text-decoration-none link-to-meesage">
+                        <p class="fw-light py-0 my-0 uid-number ">{{ $oMessage->uid }}</p>
                         </a>
                     </div>
                     <div class="col-3 col-md-4 align-items-center d-flex py-1">
-                        <a href="{{ request()->url() }}/{{ $oMessage->getUid() }}/show" class="text-decoration-none link-to-meesage">
+                        <a href="{{ request()->url() }}/{{ $oMessage->uid }}/show" class="text-decoration-none link-to-meesage">
                         <p class="fw-light py-0 my-0 ">
-                            {{ $oMessage->getSubject() }}
+                            {{ $oMessage->subject }}
                         </p>
                         </a>
                     </div>
                     <div class="col-3 col-md-5 align-items-center d-flex py-1">
-                        <a href="{{ request()->url() }}/{{ $oMessage->getUid() }}/show" class="text-decoration-none link-to-meesage">
+                        <a href="{{ request()->url() }}/{{ $oMessage->uid }}/show" class="text-decoration-none link-to-meesage">
                         <p class="fw-light py-0 my-0 ">
-                            {{ request()->is('admin/incoming') ? $oMessage->getFrom()[0]->mail : $oMessage->getTo()[0]->mail }}
+                            {{ request()->is('admin/incoming') ? $oMessage->from_email : '$oMessage->getTo()[0]->mail' }}
                         </p>
                         </a>
                     </div>
                     <div
                         class="col-2 col-md-1 align-items-center d-flex py-1 justify-content-center justify-content-xl-start">
-                        <a href="{{ request()->url() }}/{{ $oMessage->getUid() }}/show" class="text-decoration-none link-to-meesage">
+                        <a href="{{ request()->url() }}/{{ $oMessage->uid }}/show" class="text-decoration-none link-to-meesage">
                         <p class="fw-light py-0 my-0 ">
-                            {{ $oMessage->getAttachments()->count() > 0 ? 'yes' : 'no' }}
+                            {{-- {{ $oMessage->getAttachments()->count() > 0 ? 'yes' : 'no' }} --}}
                         </p>
                         </a>
                     </div>
                     <div
                         class="col-1 col-md-1 align-items-center d-flex py-1">
-                        <a href="{{ request()->url() }}/{{ $oMessage->getUid() }}/forward" class="text-decoration-none link-to-meesage">
+                        <a href="{{ request()->url() }}/{{ $oMessage->uid }}/forward" class="text-decoration-none link-to-meesage">
                         <button type="button" class="btn btn-success">
                             Forward
                         </button>
                         </a>
                     </div>
-                    
+
                 </div>
             <!-- </a> -->
         @endforeach

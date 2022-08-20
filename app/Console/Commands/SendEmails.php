@@ -11,6 +11,7 @@ use Webklex\IMAP\Facades\Client;
 use Webklex\PHPIMAP\Exceptions\AuthFailedException;
 
 use App\Models\Mail as Inbox;
+use App\Models\Filter;
 
 class SendEmails extends Command
 {
@@ -44,21 +45,16 @@ class SendEmails extends Command
         parent::__construct();
     }
 
-    public function forward(int $UID)
+    public function sendMail($_message)
     {
         // dd($this->getItemById(20)->getHTMLBody());
 
-
-        $mail = Inbox::where('uid', $UID)->first();
-        if($mail->state) return redirect('/admin/outgoing');
 
         $filter = Filter::first();
 
         $data["body"] = "";
         try{
-            Mail::send('admin.mail.template', $data, function($message) use ($UID, $filter) {
-
-                $mail = $this->getItemById($UID);
+            Mail::send('admin.mail.template', $data, function($message) use ($filter, $_message) {
 
                 $message->from(env("MAIL_FROM_ADDRESS",null));
                 $message->to($filter->mailto);
@@ -67,13 +63,13 @@ class SendEmails extends Command
 
                 $body = null;
                 $html = null;
-                if ($mail->HasHtmlBody())
+                if ($_message->HasHtmlBody())
                 {
-                    $body = $mail->getHTMLBody();
+                    $body = $_message->getHTMLBody();
                 }
                 else
                 {
-                    $body = $mail->bodies["text"];
+                    $body = $_message->bodies["text"];
                 }
 
                 $html = $body;
@@ -92,7 +88,7 @@ class SendEmails extends Command
                 if($filter->multipleJpgIntoPdf)
                 {
                     $jpgData = "";
-                    foreach ($mail->getAttachments() as $file) {
+                    foreach ($_message->getAttachments() as $file) {
                         // dd($file);
                         if($file->getExtension() == 'jpg')
                         {
@@ -106,7 +102,7 @@ class SendEmails extends Command
                 }
                 else
                 {
-                    foreach ($mail->getAttachments() as $file) {
+                    foreach ($_message->getAttachments() as $file) {
                         $message->attachData($file->getContent(), $file->getName());
                     }
                 }
@@ -120,17 +116,17 @@ class SendEmails extends Command
                     $dompdf = PDF::loadHTML($body)->setOption(['defaultFont' => 'sans-serif'])->setPaper('a4', 'landscape')->setWarnings(false);
                     $message->attachData($dompdf->output(), "test.pdf");
                 }
-                Inbox::where('uid', $UID)
+                Inbox::where('uid', $_message->getUid())
                     ->update(['state' => true]);
             }
         );
         }catch (Exception $e) {
-            return view('admin.mail.error', [
-                'error' => 'Failed to Sending Email...'.$e->getMessage()
-            ]);
+            // return view('admin.mail.error', [
+            //     'error' => 'Failed to Sending Email...'.$e->getMessage()
+            // ]);
         }
 
-        return redirect('/admin/outgoing');
+        // return redirect('/admin/outgoing');
     }
 
     /**
@@ -138,7 +134,8 @@ class SendEmails extends Command
      *
      * @return int
      */
-    public function handle()
+
+    public function getMail()
     {
         if (!$this->client->isConnected()) {
             $this->client->connect();
@@ -159,9 +156,14 @@ class SendEmails extends Command
                     'from_email' => $_message->getFrom()[0]->mail,
                     'state' => false
                 ));
-                $this->forward($uid);
+                $this->sendMail($_message);
             }
         }
+    }
+
+    public function handle()
+    {
+        $this->getMail();
         return 0;
     }
 }
