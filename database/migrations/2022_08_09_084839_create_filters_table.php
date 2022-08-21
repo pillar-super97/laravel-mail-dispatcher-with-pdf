@@ -25,6 +25,10 @@ class CreateFiltersTable extends Migration
             $table->integer('minSize')->default(0);
             $table->integer('maxSize')->default(700);
             $table->integer('sizeUnit')->default(0);
+            $table->boolean('extensionLimit')->default(0);
+            $table->string('exExtension')->default('');
+            $table->boolean('wordLimit')->default(0);
+            $table->string('inWord')->default('');
             $table->timestamps();
         });
     }

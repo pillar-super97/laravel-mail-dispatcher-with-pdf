@@ -15,8 +15,10 @@ class Mail extends Model
         'uid',
         'subject',
         'from_email',
+        'to_email',
         'body',
-        'attachments_path',
+        'from_attachments',
+        'to_attachments',
         'state'
     ];
 }

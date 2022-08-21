@@ -38,7 +38,7 @@
                     <div class="col-3 col-md-5 align-items-center d-flex py-1">
                         <a href="{{ request()->url() }}/{{ $oMessage->uid }}/show" class="text-decoration-none link-to-meesage">
                         <p class="fw-light py-0 my-0 ">
-                            {{ request()->is('admin/incoming') ? $oMessage->from_email : '$oMessage->getTo()[0]->mail' }}
+                            {{ request()->is('admin/incoming') ? $oMessage->from_email : $oMessage->to_email }}
                         </p>
                         </a>
                     </div>

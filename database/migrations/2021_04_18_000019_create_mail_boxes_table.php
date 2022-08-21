@@ -13,8 +13,10 @@ class CreateMailBoxesTable extends Migration
             $table->integer('uid');
             $table->text('subject')->default('');
             $table->text('from_email')->default('');
+            $table->text('to_email')->default('');
             $table->text('body')->default('');
-            $table->text('attachments_path')->nullable();
+            $table->text('to_attachments')->nullable();
+            $table->text('from_attachments')->nullable();
             $table->boolean('state')->default(false);
             $table->timestamps();
         });

@@ -34,8 +34,16 @@ class InComingController extends Controller
     public function index()
     {
         $paginator = Mail::paginate($perPage = 25);
-        return view('admin.mail.inbox', [
+        return view('admin.mail.mailbox', [
             'paginator' => $paginator
+        ]);
+    }
+    
+    public function show(int $UID)
+    {
+        $_message = Mail::where('uid', $UID)->first();
+        return view('admin.mail.show', [
+            'message' => $_message
         ]);
     }
 }

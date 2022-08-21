@@ -22,9 +22,14 @@ class FilterController
         $filter->profile = $request->profile;
         $filter->allowEmptyContent = $request->allowEmptyContent;
         $filter->multipleJpgIntoPdf = $request->multipleJpgIntoPdf;
+        $filter->sizeLimit = $request->sizeLimit ? 1 : 0;
         $filter->sizeUnit = $request->sizeUnit;
         $filter->minSize = $request->minSize;
         $filter->maxSize = $request->maxSize;
+        $filter->extensionLimit = $request->extensionLimit ? 1 : 0;
+        $filter->exExtension = $request->exExtension ? $request->exExtension : '';
+        $filter->wordLimit = $request->wordLimit ? 1 : 0;
+        $filter->inWord = $request->inWord ? $request->inWord : '';
         $filter->save();
         $filters = Filter::all();
         return view('admin.mail.filter', compact('filters'));

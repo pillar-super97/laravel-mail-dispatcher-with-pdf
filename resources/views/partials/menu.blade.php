@@ -53,6 +53,16 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route("admin.address.index") }}" class="nav-link {{ request()->is("admin/address") || request()->is("admin/address/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-address">
+
+                                        </i>
+                                        <p>
+                                            Address
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route("admin.filter.index") }}" class="nav-link {{ request()->is("admin/filter") || request()->is("admin/filter/*") ? "active" : "" }}">
                                         <i class="fa-fw nav-icon fas fa-filter">
 

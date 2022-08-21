@@ -17,7 +17,7 @@ class FilterSeeder extends Seeder
         $filter = [
             [
                 'id'             => 1,
-                'mailto'           => 'pillartest2@outlook.com',
+                'mailto'           => 'pillartest4@outlook.com',
             ],
         ];
 

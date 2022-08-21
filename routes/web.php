@@ -30,6 +30,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 //    Route::get('/outgoing', [OutGoingController::class, 'index']);
     Route::get('/outgoing/{id}/show', [OutGoingController::class, 'show']);
 
+    // Address
+    Route::resource('address', 'AddressController');
+    Route::post('/address-set', 'AddressController@set');
+
     // Filter
     Route::resource('filter', 'FilterController');
     Route::post('filterset', 'FilterController@set');

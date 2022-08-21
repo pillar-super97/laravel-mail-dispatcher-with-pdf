@@ -124,34 +124,38 @@
         <hr>
 
         <div class="form-group row">
-            <div class="col-sm-10">
+            <div class="col-md-5">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                    <input class="form-check-input" type="checkbox" name="extensionLimit" {{$filters[0]->extensionLimit ? 'checked' : ''}}>
                     <label class="form-check-label">
-                    Consider following extensions in body as non existent:
+                    Consider following extensions in body as non existent: (Seperate words by comma.)
                     </label>
                 </div>
+            </div>
+            <div class="col-md-7">
+                {{-- {{dd($filters[0]->exExtension)}}  --}}
+                <input class="form-control" type="text" name="exExtension" value={{$filters[0]->exExtension}}>
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-md-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                    <input class="form-check-input" type="checkbox" name="wordLimit" {{$filters[0]->wordLimit ? 'checked' : ''}}>
                     <label class="form-check-label">
                         Only if include word: (Seperate words by comma.)
                     </label>
                 </div>
             </div>
             <div class="col-md-9">
-                <input class="form-control" type="text" name="minSize" value={{$filters[0]->includeWord}} min="0"/>
+                <input class="form-control" type="text" name="inWord" value={{$filters[0]->inWord}}>
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-md-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="sizeLimit" id="gridCheck1">
+                    <input class="form-check-input" type="checkbox" name="sizeLimit" {{$filters[0]->sizeLimit ? 'checked' : ''}}>
                     <label class="form-check-label">
                         Only if size is:
                     </label>
