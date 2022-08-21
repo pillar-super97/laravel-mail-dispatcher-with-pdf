@@ -11,10 +11,10 @@ class CreateMailBoxesTable extends Migration
         Schema::create('mail_boxes', function (Blueprint $table) {
             $table->id();
             $table->integer('uid');
-            $table->text('subject')->default('');
-            $table->text('from_email')->default('');
-            $table->text('to_email')->default('');
-            $table->text('body')->default('');
+            $table->text('subject');
+            $table->text('from_email');
+            $table->text('to_email');
+            $table->text('body');
             $table->text('to_attachments')->nullable();
             $table->text('from_attachments')->nullable();
             $table->boolean('state')->default(false);

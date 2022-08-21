@@ -8,9 +8,17 @@
     {!! $message->body ? $message->body : $message->bodies["text"] !!}
 </div>
 <div>
-    @foreach ( preg_split ("/\,/", request()->is('admin/incoming') ? $message->from_attachments : $message->to_attachments) as $file)
-        <h3>{{$file}}</h3>
-    @endforeach
-
+    <?php
+        $attach = $isIncoming ? $message->from_attachments : $message->to_attachments;
+        $files = preg_split ("/\,/", $attach);
+    ?>
+    @if(count($files) > 0 && $files[0] != '')
+        <h4>Attachments</h4>
+        <ul>
+        @foreach ( $files as $file)
+            <li>{{$file}}</li>
+        @endforeach
+        </ul>
+    @endif
 </div>
 @endsection

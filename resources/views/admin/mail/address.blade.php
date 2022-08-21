@@ -2,30 +2,30 @@
 @section('content')
 <div class="container main-table">
     <div class="row main-row ">
-        <div class="col-3 col-md-6">
+        <div class="col-3 col-md-6 offset-md-3">
             <p class="fw-bold ">Address</p>
         </div>
-        <div class="col-3 col-md-3">
+        {{-- <div class="col-3 col-md-3">
             <p class="fw-bold ">Count</p>
-        </div>
+        </div> --}}
         <div class="col-2 col-md-3">
-            <p class="fw-bold ">Recieve</p>
+            <p class="fw-bold ">Send</p>
         </div>
     </div>
     @if ($paginator->count() > 0)
         @foreach ($paginator as $address)
                 <div class="h-50 row{{ $loop->odd ? ' bg-row' : '' }}">
                     <div
-                        class="col-3 col-md-6 align-items-center d-flex py-1 justify-content-center justify-content-xl-start">
+                        class="col-3 col-md-6 offset-md-3 align-items-center d-flex py-1 justify-content-center justify-content-xl-start">
                         <p class="fw-light py-0 my-0 uid-number ">{{ $address->address }}</p>
                         </a>
                     </div>
-                    <div class="col-3 col-md-3 align-items-center d-flex py-1">
+                    {{-- <div class="col-3 col-md-3 align-items-center d-flex py-1">
                         <p class="fw-light py-0 my-0 ">
                             {{ $address->count }}
                         </p>
                         </a>
-                    </div>
+                    </div> --}}
                     <div
                         class="col-1 col-md-3 align-items-center d-flex py-1">
                         <label class="checkbox-inline">

@@ -192,6 +192,7 @@ class SendEmails extends Command
         if (!$this->client->isConnected())
             $this->client->connect();
 
+        $this->info('Mail server connected!');
         $this->folder = $this->client->getFolderByName('Inbox');
         if($this->folder == null)
             $this->folder = $this->client->getFolderByName('INBOX');

@@ -51,7 +51,8 @@ class OutGoingController extends Controller
     {
         $_message = Mail::where('uid', $UID)->first();
         return view('admin.mail.show', [
-            'message' => $_message
+            'message' => $_message,
+            'isIncoming' => false,
             // $this->getItemById($UID)
         ]);
     }

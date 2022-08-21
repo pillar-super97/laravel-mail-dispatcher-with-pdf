@@ -20,6 +20,7 @@
     </div>
     @if ($paginator->count() > 0)
         @foreach ($paginator as $oMessage)
+            @if($oMessage->state == 1 || request()->is('admin/incoming'))
             <!-- <a href="{{ request()->url() }}/{{ $oMessage->uid }}/show" class="text-decoration-none link-to-meesage"> -->
                 <div class="h-50 row{{ $loop->odd ? ' bg-row' : '' }}">
                     <div
@@ -46,7 +47,7 @@
                         class="col-2 col-md-1 align-items-center d-flex py-1 justify-content-center justify-content-xl-start">
                         <a href="{{ request()->url() }}/{{ $oMessage->uid }}/show" class="text-decoration-none link-to-meesage">
                         <p class="fw-light py-0 my-0 ">
-                            {{-- {{ $oMessage->getAttachments()->count() > 0 ? 'yes' : 'no' }} --}}
+                            {{ request()->is('admin/incoming') ? $oMessage->from_attachments : $oMessage->to_attachments }}
                         </p>
                         </a>
                     </div>
@@ -61,6 +62,7 @@
 
                 </div>
             <!-- </a> -->
+            @endif
         @endforeach
         {{ $paginator->links() }}
     @else

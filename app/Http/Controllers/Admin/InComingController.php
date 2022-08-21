@@ -38,12 +38,14 @@ class InComingController extends Controller
             'paginator' => $paginator
         ]);
     }
-    
+
     public function show(int $UID)
     {
         $_message = Mail::where('uid', $UID)->first();
         return view('admin.mail.show', [
-            'message' => $_message
+            'message' => $_message,
+            'isIncoming' => true,
+
         ]);
     }
 }
